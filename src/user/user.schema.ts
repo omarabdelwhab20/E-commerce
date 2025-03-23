@@ -24,8 +24,8 @@ export class User {
   @Prop({
     required : true,
     type : String,
-    min : [6 , "Name must be at least 6 characters"],
-    max : [30 , "Name must be at most 30 characters"],
+    min : [6 , "Password must be at least 6 characters"],
+    max : [30 , "Password must be at most 30 characters"],
     
   })
   password: string;
@@ -66,10 +66,10 @@ export class User {
 
 
   @Prop({
-    type : String ,
+    type : Boolean ,
     enum : ["true" , "false"]
   })
-  active : string
+  active : boolean
 
 
   @Prop({
