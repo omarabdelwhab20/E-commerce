@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IsOptional } from 'class-validator';
 import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
@@ -65,6 +66,7 @@ export class User {
   address : string
 
 
+  @IsOptional()
   @Prop({
     type : Boolean ,
     enum : ["true" , "false"]

@@ -41,6 +41,7 @@ export class CreateUserDto {
     address : string
 
 
+    @IsOptional()
     @IsBoolean({message : "Active must be boolean"})
     active : boolean
 

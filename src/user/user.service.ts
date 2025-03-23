@@ -30,14 +30,44 @@ export class UserService {
       ...createUserDto, 
       password : hashedPassword,
       rol : createUserDto.role ?? "user",
+      active : true
     });
 
     return {created : true};
   }
 
-  async findAll() {
+  async findAll(query) {
+    const {page = 1 ,limit = 2} = query
+    const skip = (page - 1) * limit;
+
+    if(Number.isNaN(Number(+page))){
+      throw new HttpException('Invalid page', HttpStatus.BAD_REQUEST);
+    }
+
+    if(Number.isNaN(Number(+limit))){
+      throw new HttpException('Invalid limit', HttpStatus.BAD_REQUEST);
+    }
+
+    const total = await this.userModel.countDocuments()
+
     const users = await this.userModel.find({} , {name : 1 , email : 1 , role : 1 , avatar : 1 , active : 1 , gender : 1 ,  _id : 0})
-    return users
+    .limit(limit)
+    .skip(skip)
+
+
+
+    const totalPages = Math.ceil(total / limit)
+
+    return {
+      users , 
+      pagination : {
+        page : parseInt(page),
+        limit : parseInt(limit),
+        total ,
+        totalPages,
+        hasNextPage : page < totalPages
+      }
+    }
   }
 
   async findOne(id: string) {
