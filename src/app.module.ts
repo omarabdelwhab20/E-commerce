@@ -8,6 +8,7 @@ import { UserMeService } from './user-me/user-me.service';
 import { UserMeModule } from './user-me/user-me.module';
 import { AuthModule } from './auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { CategoryModule } from './category/category.module';
 
 
 
@@ -31,7 +32,8 @@ import { MailerModule } from '@nestjs-modules/mailer';
     signOptions: { expiresIn: '1h' },
   }),
   UserMeModule,
-  AuthModule],
+  AuthModule,
+  CategoryModule],
   controllers: [UserMeController],
   providers: [UserMeService],
 })

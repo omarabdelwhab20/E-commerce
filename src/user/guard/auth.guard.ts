@@ -53,7 +53,7 @@ export class AuthGuard implements CanActivate {
       }
 
       // Special case: If user is admin, grant access regardless
-      if (payload.role === 'admin') {
+      if (payload.role.toLowerCase() === 'admin') {
         request.user = payload;
         return true;
       }
