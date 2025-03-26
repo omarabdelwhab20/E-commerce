@@ -5,6 +5,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from './guard/auth.guard';
 import { Roles } from './decorator/role.decorator';
 
+@Roles(["admin"])
+@UseGuards(AuthGuard)
 @Controller('user')
 export class UserController {
   constructor(
@@ -12,8 +14,6 @@ export class UserController {
   ) {}
 
   @Post()
-  @Roles(["admin"])
-  @UseGuards(AuthGuard)
   create(@Body() createUserDto: CreateUserDto ){
     return this.userService.create(createUserDto );
   }
