@@ -9,6 +9,8 @@ import { UserMeModule } from './user-me/user-me.module';
 import { AuthModule } from './auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { CategoryModule } from './category/category.module';
+import { SubCategoryModule } from './sub category/sub-category.module';
+
 
 
 
@@ -33,7 +35,8 @@ import { CategoryModule } from './category/category.module';
   }),
   UserMeModule,
   AuthModule,
-  CategoryModule],
+  CategoryModule,
+  SubCategoryModule],
   controllers: [UserMeController],
   providers: [UserMeService],
 })
