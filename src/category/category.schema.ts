@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { IsOptional } from "class-validator";
-import { Mongoose } from "mongoose";
+
 
 @Schema({timestamps : true})
 export class Category{

@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { CategoryModule } from './category/category.module';
 import { SubCategoryModule } from './sub category/sub-category.module';
+import { BrandModule } from './brand/brand.module';
 
 
 
@@ -36,7 +37,9 @@ import { SubCategoryModule } from './sub category/sub-category.module';
   UserMeModule,
   AuthModule,
   CategoryModule,
-  SubCategoryModule],
+  SubCategoryModule,
+  BrandModule,
+  CouponModule],
   controllers: [UserMeController],
   providers: [UserMeService],
 })
