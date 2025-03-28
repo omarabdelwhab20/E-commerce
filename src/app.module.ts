@@ -12,6 +12,7 @@ import { CategoryModule } from './category/category.module';
 import { SubCategoryModule } from './sub category/sub-category.module';
 import { BrandModule } from './brand/brand.module';
 import { CouponModule } from './coupon/coupon.module';
+import { SupplierModule } from './supplier/supplier.module';
 
 
 
@@ -40,7 +41,8 @@ import { CouponModule } from './coupon/coupon.module';
   CategoryModule,
   SubCategoryModule,
   BrandModule,
-  CouponModule,],
+  CouponModule,
+  SupplierModule,],
   controllers: [UserMeController],
   providers: [UserMeService],
 })

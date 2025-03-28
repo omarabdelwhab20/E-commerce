@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { Category } from "src/category/category.schema";
 
 @Schema({timestamps : true})
-export class SubCategory{
+export class SubCategory {
     @Prop({
         required : true,
         type : String,

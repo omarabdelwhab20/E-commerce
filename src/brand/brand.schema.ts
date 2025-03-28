@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema({timestamps : true})
-export class Brand{
+export class Brand {
     @Prop({
         required : true ,
         type : String
