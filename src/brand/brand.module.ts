@@ -10,5 +10,6 @@ import { Brand, BrandSchema } from './brand.schema';
   ])],
   controllers: [BrandController],
   providers: [BrandService],
+  exports : [MongooseModule]
 })
 export class BrandModule {}

@@ -10,6 +10,6 @@ import { Category, categorySchema } from './category.schema';
   ])],
   controllers: [CategoryController],
   providers: [CategoryService],
-  exports : [MongooseModule , CategoryService]
+  exports : [MongooseModule ]
 })
 export class CategoryModule {}

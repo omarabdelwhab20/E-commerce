@@ -14,6 +14,7 @@ import { BrandModule } from './brand/brand.module';
 import { CouponModule } from './coupon/coupon.module';
 import { SupplierModule } from './supplier/supplier.module';
 import { RequestProductModule } from './request-product/request-product.module';
+import { ProductModule } from './product/product.module';
 
 
 
@@ -46,6 +47,7 @@ import { RequestProductModule } from './request-product/request-product.module';
   CouponModule,
   SupplierModule,
   RequestProductModule,
+  ProductModule,
 ],
   controllers: [UserMeController],
   providers: [UserMeService],
