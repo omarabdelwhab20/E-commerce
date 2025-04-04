@@ -13,5 +13,6 @@ import { BrandModule } from 'src/brand/brand.module';
   ]) , CategoryModule , SubCategoryModule , BrandModule ],
   controllers: [ProductController],
   providers: [ProductService],
+  exports : [ProductService , MongooseModule]
 })
 export class ProductModule {}
