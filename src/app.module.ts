@@ -15,6 +15,7 @@ import { CouponModule } from './coupon/coupon.module';
 import { SupplierModule } from './supplier/supplier.module';
 import { RequestProductModule } from './request-product/request-product.module';
 import { ProductModule } from './product/product.module';
+import { ReviewModule } from './review/review.module';
 
 
 
@@ -48,6 +49,7 @@ import { ProductModule } from './product/product.module';
   SupplierModule,
   RequestProductModule,
   ProductModule,
+  ReviewModule,
 ],
   controllers: [UserMeController],
   providers: [UserMeService],
