@@ -45,10 +45,10 @@ export class CreateProductDto {
 
 
     @IsOptional()
-    @IsNumber({},{message : "Price must be a number"})
-    @Min(10 , {message : "Price must be at least 10"})
-    @Max(100000 , {message : "Price must be at most 1000"})
-    priceAfterDiscount : number
+    @IsNumber({},{message : "Discount must be a number"})
+    @Min(0 , {message : "Discount must be at least 10"})
+    @Max(99 , {message : "Discount must be at most 99 "})
+    discountPercentage : number
 
 
     @IsNotEmpty({message : "Category name is required"})

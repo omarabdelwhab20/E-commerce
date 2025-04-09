@@ -63,9 +63,11 @@ export class Product{
 
     @Prop({
         type : Number,
-        required : false
+        default : 0,
+        min : 0,
+        max : 100
     })
-    priceAfterDiscount : number
+    discountPercentage : number
 
     @Prop({
         type: mongoose.Schema.Types.ObjectId,
@@ -120,6 +122,7 @@ export class Product{
         default : 0
     })
     ratingsQuantity : number
+    
 
 }
 

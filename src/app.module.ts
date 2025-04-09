@@ -16,6 +16,7 @@ import { SupplierModule } from './supplier/supplier.module';
 import { RequestProductModule } from './request-product/request-product.module';
 import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
+import { CartModule } from './cart/cart.module';
 
 
 
@@ -50,6 +51,7 @@ import { ReviewModule } from './review/review.module';
   RequestProductModule,
   ProductModule,
   ReviewModule,
+  CartModule,
 ],
   controllers: [UserMeController],
   providers: [UserMeService],

@@ -80,7 +80,7 @@ export class RequestProductService {
   }
 
   async remove( id: string , req) {
-    if (req.user._id === 'admin') {
+    if (req.user.role === 'admin') {
       throw new HttpException("Not authorized", HttpStatus.UNAUTHORIZED);
       
     }
