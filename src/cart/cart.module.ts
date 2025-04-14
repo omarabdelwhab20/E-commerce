@@ -14,5 +14,6 @@ import { Coupon, CouponSchema } from 'src/coupon/coupon.schema';
   ])],
   controllers: [CartController],
   providers: [CartService],
+  exports : [MongooseModule]
 })
 export class CartModule {}

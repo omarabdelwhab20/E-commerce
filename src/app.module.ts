@@ -17,6 +17,7 @@ import { RequestProductModule } from './request-product/request-product.module';
 import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
 import { CartModule } from './cart/cart.module';
+import { OrderModule } from './order/order.module';
 
 
 
@@ -24,7 +25,9 @@ import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
-  ConfigModule.forRoot() , 
+  ConfigModule.forRoot({
+    isGlobal: true,
+  }) , 
   MongooseModule.forRoot('mongodb://localhost:27017/e-commerce'), 
   UserModule,
   MailerModule.forRoot({
@@ -52,6 +55,7 @@ import { CartModule } from './cart/cart.module';
   ProductModule,
   ReviewModule,
   CartModule,
+  OrderModule,
 ],
   controllers: [UserMeController],
   providers: [UserMeService],
