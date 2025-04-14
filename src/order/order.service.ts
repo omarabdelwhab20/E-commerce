@@ -70,7 +70,7 @@ export class OrderService {
 
 
     const session = await stripe.checkout.sessions.create({
-
+      
       line_items ,
       mode : 'payment',
       success_url : dataAfterPayment.success_url,
@@ -96,7 +96,7 @@ export class OrderService {
         cancel_url : session.cancel_url,
         expires_at : new Date(session.expires_at * 1000),
         sessionId : session.id,
-        orderTotalPrice : session.amount_total,
+        orderTotalPrice : session.amount_total + 40,
         shippingAddress : session.metadata
       }
     }
@@ -147,13 +147,15 @@ export class OrderService {
             paymentMethodType,
             totalOrderPrice : (checkoutSessionCompleted.amount_total / 100) + 40,
             shippingPrice : 40,
+            isPaid : true,
             shippingAddress : {
               alias : shippingMetaData.alias,
               details : shippingMetaData.details,
               city : shippingAddress.city,
               phone : shippingMetaData.phone,
               postalCode : shippingMetaData.postalCode
-            }
+            },
+            cartItems: cartItems
           })
 
           for(const item of exitedCart.cartItems){
@@ -180,13 +182,63 @@ export class OrderService {
   }
   
 
-  findAll() {
-    return `This action returns all order`;
+  async findAllForUser(userId : string) {
+    const exitedUser = await this.orderModel.findOne({userId})
+    if(!exitedUser){
+      throw new NotFoundException("User not found")
+    }
+
+    return {
+      status : HttpStatus.FOUND,
+      message : "Orders found successfully",
+      data : exitedUser
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+
+
+  async findAllForAdmin(){
+    const orders = await this.orderModel.find().select('-_id __v cartItems totalOrderPrice')
+    .populate({
+      path : 'userId',
+      select : ' -_id name email'
+    })
+
+    if(!orders){
+      throw new NotFoundException("Orders not found")
+    }
+
+    return {
+      status : HttpStatus.FOUND,
+      message : "Orders found successfully",
+      data : orders
+    }
   }
+
+
+  async findOneForAdmin(userId : string){
+    const exitedUser = await this.orderModel.findOne({userId})
+    if(!exitedUser){
+      throw new NotFoundException("User not found")
+    }
+
+    const exitedOrder = await this.orderModel.find({userId}).select('-_id cartItems totalOrderPrice shippingAddress')
+    .populate({
+      path : 'userId',
+      select : ' -_id name email'
+    })
+    if(!exitedOrder){
+      throw new NotFoundException("This user has no orders")
+    }
+
+    return {
+      status : HttpStatus.FOUND,
+      message : "Order found successfully",
+      data : exitedOrder
+    }
+  }
+
+
 
   update(id: number, updateOrderDto: UpdateOrderDto) {
     return `This action updates a #${id} order`;

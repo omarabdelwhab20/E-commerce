@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UnauthorizedException, UseGuards, Query, RawBodyRequest, Headers } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UnauthorizedException, UseGuards, Query, RawBodyRequest, Headers, Request } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Roles } from 'src/user/decorator/role.decorator';
 import { AuthGuard } from 'src/user/guard/auth.guard';
-import { query, Request } from 'express';
+
 
 @Controller('order')
 export class OrderController {
@@ -41,14 +41,32 @@ export class OrderController {
   }
 
   @Get()
-  findAll() {
-    return this.orderService.findAll();
+  @Roles(["user"])
+  @UseGuards(AuthGuard)
+  findAllForUser(@Request() req ) {
+    if(req.user.role.toLowerCase() === "admin"){
+      throw new UnauthorizedException()
+    }
+    const userId = req.user._id
+    return this.orderService.findAllForUser(userId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.orderService.findOne(+id);
+
+  @Get('/admin')
+  @Roles(["admin"])
+  @UseGuards(AuthGuard)
+  findAllForAdmin() {
+    return this.orderService.findAllForAdmin();
   }
+
+
+  @Get('/admin/:userId')
+  @Roles(["admin"])
+  @UseGuards(AuthGuard)
+  findOneForAdmin(@Param('userId') userId: string) {
+    return this.orderService.findOneForAdmin(userId);
+  }
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
