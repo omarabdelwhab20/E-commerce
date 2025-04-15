@@ -44,7 +44,7 @@ export class SubCategoryService {
 
 
     const subCategory = await this.subCategoryModel.create({
-      name: createSubCategoryDto.name,
+      name: subCategoryName,
       category: category._id,  // Reference
       categoryName: category.name  // Embedded name
   });

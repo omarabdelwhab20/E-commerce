@@ -18,6 +18,8 @@ import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
 import { CartModule } from './cart/cart.module';
 import { OrderModule } from './order/order.module';
+import { UploadFileModule } from './upload-file/upload-file.module';
+
 
 
 
@@ -56,6 +58,7 @@ import { OrderModule } from './order/order.module';
   ReviewModule,
   CartModule,
   OrderModule,
+  UploadFileModule,
 ],
   controllers: [UserMeController],
   providers: [UserMeService],
